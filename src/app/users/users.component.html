@@ -1,0 +1,27 @@
+<section *ngIf="users$ | async as usersObservableInfo">
+  <h1>Observable</h1>
+  <div>
+    <input
+      [(ngModel)]="filterText"
+      (input)="nameFilter()"
+      placeholder="Filtrar por nombre"
+    />
+  </div>
+  <ul>
+    <li *ngFor="let user of usersObservableInfo">
+      {{ user.apellido | uppercase }}, {{ user.nombre }} - Edad:
+      {{ user.edad }}
+    </li>
+  </ul>
+</section>
+
+<section *ngIf="usersPromise | async as usersPromiseInfo; else loader">
+  <h1>Promise</h1>
+  <ul>
+    <li *ngFor="let user of usersPromiseInfo">
+      {{ user.apellido | uppercase }}, {{ user.nombre }} - Edad:
+      {{ user.edad }}
+    </li>
+  </ul>
+</section>
+<ng-template #loader> <h2>Loading ...</h2> </ng-template>
